@@ -1,0 +1,238 @@
+﻿:root {
+    --bg1: #fff3f6;
+    --bg2: #fdf6f0;
+    --text: #1f2430;
+    --muted: rgba(31,36,48,0.62);
+    --pink1: #ff9a9e;
+    --pink2: #ff6f91;
+    --card: rgba(255,255,255,0.78);
+    --card2: #ffffff;
+    --shadow: 0 18px 60px rgba(31,36,48,0.12);
+    --shadow2: 0 10px 28px rgba(31,36,48,0.10);
+    --ring: rgba(255,111,145,0.22);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Poppins", Arial, sans-serif;
+    color: var(--text);
+    background: radial-gradient(900px 500px at 15% 10%, rgba(255,111,145,0.22), transparent 60%), radial-gradient(900px 500px at 85% 15%, rgba(255,154,158,0.22), transparent 60%), linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+/* ✅ Централен контейнер (винаги център) */
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 56px 16px 40px;
+}
+
+/* Заглавие */
+.hero {
+    width: 100%;
+    max-width: 980px;
+    text-align: center;
+    margin: 0 auto 18px;
+}
+
+.float-title {
+    margin: 0 0 8px;
+    font-size: clamp(28px, 4vw, 44px);
+    letter-spacing: -0.6px;
+    /* ✅ плаване + glow */
+    animation: floaty 3.2s ease-in-out infinite, glow 2.6s ease-in-out infinite;
+    will-change: transform, text-shadow;
+}
+
+@keyframes floaty {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 0 rgba(255,111,145,0);
+    }
+
+    50% {
+        text-shadow: 0 0 12px rgba(255,111,145,0.45), 0 0 28px rgba(255,154,158,0.35);
+    }
+
+    100% {
+        text-shadow: 0 0 0 rgba(255,111,145,0);
+    }
+}
+
+.subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ✅ Контентът винаги центриран */
+.content {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    justify-content: center;
+    gap: 18px;
+}
+
+/* Desktop: 2 колони */
+@media (min-width: 860px) {
+    .content {
+        grid-template-columns: 440px 360px;
+        align-items: start;
+    }
+}
+
+/* Mobile: 1 колона */
+@media (max-width: 859px) {
+    .content {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+    }
+}
+
+/* Карти */
+.card, .msg {
+    width: 100%;
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+}
+
+/* Пъзел */
+.board {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 10px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(255,255,255,0.85);
+    box-shadow: var(--shadow2);
+}
+
+/* Плочки */
+.tile {
+    border-radius: 16px;
+    background-image: url("mira.jpg"); /* ⬅️ снимката */
+    background-size: 300% 300%;
+    cursor: grab;
+    user-select: none;
+    border: 1px solid rgba(255,255,255,0.9);
+    box-shadow: 0 10px 24px rgba(31,36,48,0.12);
+    transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+    .tile:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 30px rgba(31,36,48,0.16);
+    }
+
+    .tile:active {
+        cursor: grabbing;
+        transform: translateY(0);
+    }
+
+    .tile.dragging {
+        opacity: 0.65;
+        outline: 3px dashed rgba(255,111,145,0.75);
+        outline-offset: 3px;
+        filter: saturate(1.05);
+    }
+
+/* Бутони */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 11px 16px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--pink1), var(--pink2));
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    box-shadow: 0 12px 26px rgba(255,111,145,0.35);
+    transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+}
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 34px rgba(255,111,145,0.44);
+        filter: brightness(1.02);
+    }
+
+    button:active {
+        transform: translateY(0);
+        box-shadow: 0 10px 22px rgba(255,111,145,0.34);
+    }
+
+    button:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 5px var(--ring), 0 12px 26px rgba(255,111,145,0.35);
+    }
+
+/* Съобщение */
+.msg {
+    background: var(--card2);
+}
+
+    .msg h2 {
+        margin: 0 0 8px;
+        font-size: 22px;
+    }
+
+    .msg p {
+        margin: 0;
+        color: rgba(31,36,48,0.82);
+        line-height: 1.55;
+    }
+
+/* ✅ Като е решено: няма gap, става 1 снимка */
+.board.solved {
+    gap: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow2);
+}
+
+    .board.solved .tile {
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        transform: none;
+    }
