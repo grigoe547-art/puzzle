@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Пъзел за Теб</title>
+
+    <!-- Професионален шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="puzzle.css" />
+</head>
+<body>
+    <main class="page">
+        <header class="hero">
+            <h1 class="float-title">Коте, имам нещо за теб 🧩💗</h1>
+            <p class="subtitle">Подреди пъзела. Накрая има изненада.</p>
+        </header>
+
+        <section class="content">
+            <div class="card">
+                <div class="board" id="board"></div>
+
+                <div class="controls">
+                    <button id="shuffleBtn">Разбъркай</button>
+                    <button id="resetBtn">Подреди (решение)</button>
+                </div>
+            </div>
+
+            <div class="msg" id="msg" hidden>
+                <h2>Готово 🥹</h2>
+                <p>
+                    Просто исках да ти кажа, че ти си най-хубавото нещо в живота ми.
+                    Обичам те, коте. 💗
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script src="puzzle.js"></script>
+</body>
+</html>
